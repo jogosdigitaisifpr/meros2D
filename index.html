@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto Mero 2D - IFPR Campus Curitiba</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #00332f;
+  }
+
+  header {
+    background-color: #ffffff;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .logo {
+    max-height: 120px;
+    width: auto;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #004d40;
+    margin: 40px auto 20px;
+    padding: 10px 20px;
+    border-bottom: 4px solid #00796b;
+    max-width: 90%;
+    background: #F5FFFA;
+    border-radius: 12px;#F5FFFA
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  main {
+    padding: 30px;
+    max-width: 960px;
+    margin: auto;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    color: #00796b;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+      iframe {
+        width: 100%;
+        height: 500px;
+        border: none;
+        margin-top: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+    .titulo-projeto {
+      background-color: #004b23;
+      color: white;
+      padding: 20px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .footer-box {
+  text-align: center;
+  margin: 60px auto 20px;
+  padding: 15px 20px;
+  background:#F5FFFA;
+  color: #00332f;
+  font-size: 1rem;
+  font-weight: 500;
+  border-top: 4px solid #00796b;
+  border-radius: 12px;
+  max-width: 90%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+    .separator {
+      border: 0;
+      height: 2px;
+      background-image: linear-gradient(to right, transparent, #00796b, transparent);
+      margin: 40px 0;
+    }
+
+      #unity-container {
+      width: 960px; /* largura fixa */
+      height: 540px; /* altura fixa */
+      margin: 20px auto; /* centralizar horizontalmente */
+      position: relative;
+      background: #000; /* fundo caso necessário */
+    }
+
+    canvas#unity-canvas {
+      width: 960px; /* largura fixa */
+      height: 540px; /* altura fixa */
+      background: url("jogo/Build/Build/Build.jpg") center center / cover no-repeat;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #unity-loading-bar {
+      position: absolute;
+      width: 100%;
+      bottom: 10px;
+      text-align: center;
+    }
+
+    #unity-progress-bar-empty {
+      background: #ccc;
+      width: 80%;
+      height: 20px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    #unity-progress-bar-full {
+      background: #004b23;
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+    }
+
+    #unity-footer {
+      margin-top: 10px;
+      color: #004b23;
+    }
+
+    @media (max-width: 768px) {
+      .titulo-projeto {
+        font-size: 1.5em;
+        padding: 15px;
+      }
+
+      #unity-container,
+      canvas#unity-canvas {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo_ifpr.png" alt="Logo IFPR" class="logo">
+  </header>
+
+  <div class="page-title">
+    Projeto Mero 2D
+  </div>
+
+  <main>
+    <section>
+      <div class="highlight">
+        <p><strong>“Merinha: Jornada até o Mar”</strong> é um jogo educativo 2D desenvolvido por estudantes do curso técnico de Programação de Jogos Digitais do IFPR.</p>
+      </div>
+      <p>O projeto é fruto de uma parceria com o <strong>Instituto Meros do Brasil</strong> e tem como objetivo promover a educação ambiental por meio da interatividade e da ludicidade.</p>
+      <p>No jogo, o jogador acompanha um filhote de peixe mero enfrentando ameaças como pesca predatória e poluição, em sua jornada até o mar.</p>
+    </section>
+
+    <hr class="separator" />
+
+    <section>
+      <h3>Faixa Etária</h3>
+      <p>O jogo é direcionado a crianças de 4 a 12 anos, conforme o ECA. Ele visa desenvolver uma mentalidade ecológica crítica desde a infância, explorando os benefícios pedagógicos dos jogos digitais e a educação ambiental para formar uma geração mais consciente.</p>
+    </section>
+
+    <hr class="separator" />
+
+    <section>
+      <h3>Público-Alvo, Jogabilidade e Conscientização Ambiental</h3>
+      <p>O jogador guia um filhote de peixe mero por um labirinto de desafios como pesca predatória e poluição, explorando a importância da biodiversidade e da preservação dos ecossistemas costeiros. As fases simulam situações reais, incentivando práticas sustentáveis.</p>
+    </section>
+
+    <hr class="separator" />
+
+    <section>
+      <h3>Orientações e Regras do Jogo</h3>
+      <p>O jogo é dividido em três fases. A primeira apresenta os controles e o ambiente. Na segunda, o jogador desvia de pescadores bons e maus. Na terceira, enfrenta ameaças de poluição representadas por objetos como sacolas, garrafas PET e redes de pesca, reforçando a mensagem de conscientização ambiental.</p>
+    </section>
+
+  <section>
+  <div id="unity-container">
+    <canvas id="unity-canvas" width="960" height="540"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+    <div id="unity-warning"></div>
+    <div id="unity-footer"></div>
+  </div>
+</section>
+
+  <hr class="separator" />
+
+  <section>
+    <h3>Histórico da Equipe</h3>
+    <p>A equipe responsável pelo desenvolvimento do jogo "Merinha: Jornada até o Mar" iniciou seus trabalhos em julho de 2023, composta por professores e estudantes do curso técnico integrado em Jogos Digitais. O projeto visa promover a educação ambiental para o público infantil por meio de uma narrativa lúdica e interativa ambientada no manguezal, habitat essencial para o peixe mero.</p>
+
+    <p>A equipe é formada pelos professores Carla Hamel Wojcik, Denise Sato, Fábio Albini Pessoa e Mônia Naomy Nakagawa, e pelos estudantes Ariadny Katllen Lopes Bueno Vieira, David Carvalho Raymundo de Oliveira, Sarah Evelin de Moraes Cavalcante e Henrique Maia Staff. Com apoio do projeto Meros do Brasil, a equipe aprimorou o conhecimento sobre o peixe mero, enfrentando diversos desafios técnicos e criativos para estruturar o jogo em três fases progressivas.</p>
+  </section>
+
+</main>
+
+<footer class="footer-box">
+  Projeto desenvolvido por estudantes do IFPR Campus Curitiba<br>
+  em parceria com o Instituto Meros do Brasil. <br>
+  © 2025
+</footer>
+
+  <script>
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var warningBanner = document.querySelector("#unity-warning");
+
+    function unityShowBanner(msg, type) {
+      function updateBannerVisibility() {
+        warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+      }
+      var div = document.createElement('div');
+      div.innerHTML = msg;
+      warningBanner.appendChild(div);
+      if (type == 'error') div.style = 'background: red; padding: 10px;';
+      else {
+        if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+        setTimeout(function() {
+          warningBanner.removeChild(div);
+          updateBannerVisibility();
+        }, 5000);
+      }
+      updateBannerVisibility();
+    }
+
+    var buildUrl = "jogo/Build/Build";
+    var loaderUrl = buildUrl + "/Build.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/Build.data",
+      frameworkUrl: buildUrl + "/Build.framework.js",
+      codeUrl: buildUrl + "/Build.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Instituto Técnico Federal - Campus Curitiba",
+      productName: "MerinhaJornada",
+      productVersion: "1.0",
+      showBanner: unityShowBanner,
+    };
+
+    canvas.style.background = "url('" + buildUrl + "/Build.jpg') center / cover";
+
+    loadingBar.style.display = "block";
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        progressBarFull.style.width = 100 * progress + "%";
+      }).then((unityInstance) => {
+        loadingBar.style.display = "none";
+        // fullscreenButton pode não estar declarado, ajuste se precisar
+        // fullscreenButton.onclick = () => {
+        //   unityInstance.SetFullscreen(1);
+        // };
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
