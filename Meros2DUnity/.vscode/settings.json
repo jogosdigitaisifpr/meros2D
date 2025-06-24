@@ -51,7 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ProjetoMeros - 06.11.2024.sln",
+    "dotnet.defaultSolution": "Meros2DUnity.sln",
     "cSpell.words": [
         "seguiu"
     ]

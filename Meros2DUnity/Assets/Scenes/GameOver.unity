@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 1456917847}
   - component: {fileID: 1456917848}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,8 +595,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ee5099045bfb65d48bf82ea63510127b, type: 2}
-  m_sharedMaterial: {fileID: 3290920318051890475, guid: ee5099045bfb65d48bf82ea63510127b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c93bf916f680ebb4592c8fe75b201675, type: 2}
+  m_sharedMaterial: {fileID: -3126870843473757425, guid: c93bf916f680ebb4592c8fe75b201675, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -20,10 +20,14 @@ public class Evento : MonoBehaviour
 
     private void Start()
     {
-        soundOn.enabled = false;
-        pOn.enabled = false;
-        soundOff.enabled = true;
-        pOff.enabled = true;
+        if (soundOn != null)
+            soundOn.enabled = false;
+        if (pOn != null)
+            pOn.enabled = false;
+        if (soundOff != null)
+            soundOff.enabled = true;
+        if (pOff != null)
+            pOff.enabled = true;
         Time.timeScale = 1;
         Time.timeScale = 1;
         pauseOn = false;
@@ -108,12 +112,14 @@ public class Evento : MonoBehaviour
         if (pauseOn)
         {
             Time.timeScale = 0;
-            pauseMenu.gameObject.SetActive(true); // Mostra o menu se quiser
+            if (pauseMenu != null)
+                pauseMenu.gameObject.SetActive(true); // Mostra o menu se quiser
         }
         else
         {
             Time.timeScale = 1;
-            pauseMenu.gameObject.SetActive(false);
+            if (pauseMenu != null)
+                pauseMenu.gameObject.SetActive(false);
         }
 
         OnOffPause();
@@ -123,22 +129,27 @@ public class Evento : MonoBehaviour
     {
         pauseOn = false;
         Time.timeScale = 1;
-        pauseMenu.gameObject.SetActive(false);
+        if (pauseMenu != null)
+            pauseMenu.gameObject.SetActive(false);
 
         OnOffPause();
     }
 
     public void OnOffPause()
     {
-        pOn.enabled = !pauseOn;  // �cone de "pausar" aparece quando n�o est� pausado
-        pOff.enabled = pauseOn;  // �cone de "continuar" aparece quando est� pausado
+        if (pOn != null)
+            pOn.enabled = !pauseOn;  // �cone de "pausar" aparece quando n�o est� pausado
+        if (pOff != null)
+            pOff.enabled = pauseOn;  // �cone de "continuar" aparece quando est� pausado
     }
 
     //desativa a imagem de que esta com som para ativar que esta sem som
     public void OnOff()
     {
-        soundOn.enabled = somOn;
-        soundOff.enabled = !somOn;
+        if (soundOn != null)
+            soundOn.enabled = somOn;
+        if (soundOff != null)
+            soundOff.enabled = !somOn;
     }
     //volta do pause
     
@@ -164,15 +175,18 @@ public class Evento : MonoBehaviour
         passouFase = ativarBotao;
         if(passouFase == 0)
         {
-           bt0.GetComponent<Button>().enabled = true;
+            if (bt0 != null)
+                bt0.GetComponent<Button>().enabled = true;
         }
         if(passouFase == 1)
         {
-           bt1.gameObject.SetActive (true);
+            if (bt1 != null)
+                bt1.gameObject.SetActive (true);
         }
         if(passouFase == 2)
         {
-           bt2.GetComponent<Button>().enabled = true;
+            if (bt2 != null)
+                bt2.GetComponent<Button>().enabled = true;
         }
     }
     
