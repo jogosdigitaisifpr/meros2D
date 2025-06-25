@@ -4003,7 +4003,7 @@ RectTransform:
   m_GameObject: {fileID: 511302879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.46036786, y: 0.46036786, z: 0.46036786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1772493964}
@@ -4011,8 +4011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -26, y: 27}
-  m_SizeDelta: {x: 402.27, y: 312.9}
+  m_AnchoredPosition: {x: -15, y: 15}
+  m_SizeDelta: {x: 231, y: 180}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &511302881
 MonoBehaviour:
@@ -4034,7 +4034,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2cb9377029de6d74197e5268e66c7c0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99dbb72a6fc249043841d229eeb05759, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32062,7 +32062,7 @@ RectTransform:
   m_GameObject: {fileID: 1983477026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.46036786, y: 0.46036786, z: 0.46036786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1772493964}
@@ -32070,8 +32070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -229.13, y: 27}
-  m_SizeDelta: {x: 215.76, y: 315.75}
+  m_AnchoredPosition: {x: -260, y: 15}
+  m_SizeDelta: {x: 123, y: 180}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1983477028
 MonoBehaviour:
@@ -32093,7 +32093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c5179d08119090745b6ac17ab622e6b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 219cad62d1a2a9245aece8b925e7892e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
