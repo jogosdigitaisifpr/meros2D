@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
+ 
 public class Player : MonoBehaviour
 {
     public float speed;    
@@ -16,6 +17,12 @@ public class Player : MonoBehaviour
     public float vertical;
     public GameObject somPerdeVida;
     public float time;
+    private Vector2 moveInput;
+    private Vector3 lastMoveDirection;
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    private static readonly int MoveDirectionX = Animator.StringToHash("MoveDirectionX");
+    private static readonly int MoveDirectionY = Animator.StringToHash("MoveDirectionY");
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +37,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         time = time + Time.deltaTime;
-        
-        
+        UpdateAnimation();
+
+
     }
     
     private void FixedUpdate()
@@ -41,24 +49,30 @@ public class Player : MonoBehaviour
             Walk();
         }
     }
-    
-    
+
+
     private void Walk()
     {
-        
-        pla.SetFloat("horizontal", horizontal);
-        pla.SetFloat("vertical", vertical);
-        vertical = Input.GetAxisRaw("Vertical");
-        horizontal = Input.GetAxisRaw("Horizontal");
-       if(horizontal>0)
-       {
-              transform.Rotate(transform.rotation.x, transform.rotation.y, -100f * Time.deltaTime);
-       }
-       if(horizontal<0)
-       {
-              transform.Rotate(transform.rotation.x, transform.rotation.y, 100f * Time.deltaTime);
-       }
-        transform.Translate(Vector2.right * speed * vertical * Time.deltaTime);
+        if (moveInput.magnitude > 0.1f)
+        {
+            lastMoveDirection = moveInput.normalized;
+        }
+
+        Vector2 move = moveInput * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + move);
+    }
+    public void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+    }
+    private void UpdateAnimation()
+    {
+        pla.SetBool(IsWalking, moveInput != Vector2.zero);
+        if (moveInput != Vector2.zero)
+        {
+            pla.SetFloat(MoveDirectionX, moveInput.x);
+            pla.SetFloat(MoveDirectionY, moveInput.y);
+        }
     }
     public void GanhaVida(int valor)
     {
