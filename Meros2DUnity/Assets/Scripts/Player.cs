@@ -8,13 +8,9 @@ public class Player : MonoBehaviour
 {
     public float speed;    
     Rigidbody2D rb;
-    private SpriteRenderer pl;
     private Animator pla;
     public int vida;
     public Vector3 Renasce = new Vector3(1.1f, 1.1f, 0);
-    private Vector2 moveDirection;
-    public float horizontal;
-    public float vertical;
     public GameObject somPerdeVida;
     public float time;
     private Vector2 moveInput;
@@ -22,13 +18,13 @@ public class Player : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int MoveDirectionX = Animator.StringToHash("MoveDirectionX");
     private static readonly int MoveDirectionY = Animator.StringToHash("MoveDirectionY");
+    public ParticleRotation particleRotation;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        pl = GetComponent<SpriteRenderer>();
         pla = GetComponent<Animator>();
         vida = 3;
     }
@@ -67,12 +63,18 @@ public class Player : MonoBehaviour
     }
     private void UpdateAnimation()
     {
-        pla.SetBool(IsWalking, moveInput != Vector2.zero);
-        if (moveInput != Vector2.zero)
-        {
-            pla.SetFloat(MoveDirectionX, moveInput.x);
-            pla.SetFloat(MoveDirectionY, moveInput.y);
-        }
+    pla.SetBool(IsWalking, moveInput != Vector2.zero);
+
+    if (moveInput != Vector2.zero)
+    {
+    pla.SetFloat(MoveDirectionX, moveInput.x);
+    pla.SetFloat(MoveDirectionY, moveInput.y);
+    if (particleRotation != null)
+    {
+        particleRotation.UpdateRotation(moveInput.normalized);
+    }
+    }
+        
     }
     public void GanhaVida(int valor)
     {
