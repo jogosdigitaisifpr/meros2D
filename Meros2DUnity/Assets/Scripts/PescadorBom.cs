@@ -87,7 +87,7 @@ public class PescadorBom : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !hasTriggered)
         {
-            ;
+            
             player.transform.position = pla.Renasce;
             if(SceneManager.GetActiveScene().name == "fase1_2" && collision.gameObject.GetComponent<PlayerCollision>().contaCut == 0)
             {
@@ -104,7 +104,7 @@ public class PescadorBom : MonoBehaviour
     // Não pausar o tempo
     cameraAudio.Pause();
     fundoCut.SetActive(true);
-        player.SetActive(false);
+        pla.enabled = false;
     Animator cutsceneAnimator = cutsceneObject.GetComponent<Animator>();
     if (cutsceneAnimator != null)
     {
@@ -117,7 +117,7 @@ public class PescadorBom : MonoBehaviour
     }
     // Aguarda a duração da animação
     yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
-    player.SetActive(true);
+        pla.enabled = true  ;
     fundoCut.SetActive(false); // Oculta novamente
     cameraAudio.UnPause();
     hasTriggered = false;

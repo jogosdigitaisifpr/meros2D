@@ -18,6 +18,7 @@ public class Pescador : MonoBehaviour
     private AudioSource cameraAudio;
     private bool hasTriggered = false;
     public int contaCut = 0;
+    private bool parado;
 
 
     void Start()
@@ -34,8 +35,17 @@ public class Pescador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(!seguiu)
+
+        if (transform.position == ponto.transform.position)
+        {
+            parado = true;
+        }
+        else
+        {
+            parado = false;
+        }
+
+        if (!seguiu)
         {
             transform.position = Vector2.MoveTowards(transform.position, ponto.transform.position, speed * Time.deltaTime);
         }
@@ -91,8 +101,8 @@ public class Pescador : MonoBehaviour
     // Não pausar o tempo
     cameraAudio.Pause();
     fundoCut.SetActive(true);
-        player.SetActive(false);
-    Animator cutsceneAnimator = cutsceneObject.GetComponent<Animator>();
+        pla.enabled = false;
+        Animator cutsceneAnimator = cutsceneObject.GetComponent<Animator>();
     if (cutsceneAnimator != null)
     {
         cutsceneAnimator.Play("CutsceneCompleta");
@@ -104,7 +114,7 @@ public class Pescador : MonoBehaviour
     }
     // Aguarda a duração da animação
     yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
-    player.SetActive(true);
+        pla.enabled = true;
     fundoCut.SetActive(false); // Oculta novamente
     cameraAudio.UnPause();
     hasTriggered = false;

@@ -25,7 +25,7 @@ public class PlayerCollision : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Verifica se o objeto colidido tem a tag "Enemy"
-        if (collision.gameObject.CompareTag("Enemy") && contaCutPescMal > 0)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
 
             // Inicia a cor vermelha e chama a função para restaurar a cor original após 1 segundo
