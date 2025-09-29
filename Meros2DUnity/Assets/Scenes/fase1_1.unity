@@ -1043,7 +1043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &195042368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2316,6 +2316,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cec0b2c714b441240b98d7c904818225, type: 2}
+    - target: {fileID: 4753862474271331460, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
+      propertyPath: android
+      value: 
+      objectReference: {fileID: 195042367}
     - target: {fileID: 4753862474271331460, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: somPerdeVida
       value: 

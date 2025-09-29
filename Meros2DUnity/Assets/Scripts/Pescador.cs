@@ -99,6 +99,8 @@ public class Pescador : MonoBehaviour
   IEnumerator TocarCutsceneAnimada()
 {
     // Não pausar o tempo
+        pla.DesativaAndroid();
+
     cameraAudio.Pause();
     fundoCut.SetActive(true);
         pla.enabled = false;
@@ -114,6 +116,8 @@ public class Pescador : MonoBehaviour
     }
     // Aguarda a duração da animação
     yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
+        pla.AtivaAndroid();
+
         pla.enabled = true;
     fundoCut.SetActive(false); // Oculta novamente
     cameraAudio.UnPause();

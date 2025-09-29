@@ -23,10 +23,14 @@ public class Player : MonoBehaviour
     private static readonly int MoveDirectionX = Animator.StringToHash("MoveDirectionX");
     private static readonly int MoveDirectionY = Animator.StringToHash("MoveDirectionY");
     public ParticleRotation particleRotation;
-
+    public GameObject android;
     // Start is called before the first frame update
     void Start()
     {
+         if (Application.platform == RuntimePlatform.Android)
+        {
+            android.SetActive(true);
+        }
         rb = GetComponent<Rigidbody2D>();
         pla = GetComponent<Animator>();
         vida = 3;
@@ -113,6 +117,15 @@ public class Player : MonoBehaviour
         {
             Renasce = collision.transform.position;
         }
+    }
+    public void AtivaAndroid()
+    {
+        android.SetActive(true);
+
+    }
+    public void DesativaAndroid()
+    {
+        android.SetActive(false);
     }
 }
     
