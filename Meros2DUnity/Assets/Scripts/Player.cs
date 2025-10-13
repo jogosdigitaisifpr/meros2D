@@ -1,131 +1,142 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
- 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    public float speed;    
-    [Header("Suavização de Movimento")]
-    public float accelerationTime = 0.1f;  // Tempo para acelerar/desacelerar (ajuste para mais/menos inércia)
-    
-    Rigidbody2D rb;
-    private Animator pla;
-    public int vida;
+    [Header("Movimento")]
+    [Tooltip("Velocidade de movimento (unidades por segundo).")]
+    public float moveSpeed = 0f;
+    [Tooltip("Ignora micro variações de input.")]
+    public float deadZone = 0.05f;
+
+    [Header("Rotação")]
+    [Tooltip("Graus por segundo para girar em direção ao movimento.")]
+    public float rotationSpeed = 720f;
+    [Tooltip("Se o sprite aponta para cima (top-down clássico), use 90. Se aponta para a direita, use 0.")]
+    public float spriteForwardOffset = 90f;
+
+    [Header("Status")]
+    public int vida = 3;
     public Vector3 Renasce = new Vector3(1.1f, 1.1f, 0);
     public GameObject somPerdeVida;
-    public float time;
-    private Vector2 moveInput;
-    private Vector3 lastMoveDirection;
-    private Vector2 currentVelocity;  // Velocidade atual suavizada
-    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
-    private static readonly int MoveDirectionX = Animator.StringToHash("MoveDirectionX");
-    private static readonly int MoveDirectionY = Animator.StringToHash("MoveDirectionY");
+
+    [Header("Outros")]
     public ParticleRotation particleRotation;
     public GameObject android;
-    // Start is called before the first frame update
+    public Animator animator;
+
+    private Rigidbody2D rb;
+    private Vector2 input;       
+    private Vector2 moveDir;     
+    private Vector2 lastMoveDir;
+    private float time;
+
     void Start()
     {
-         if (Application.platform == RuntimePlatform.Android)
-        {
+              rb = GetComponent<Rigidbody2D>();
+        if (!animator) animator = GetComponentInChildren<Animator>();
+
+        // Config padrão para top-down 2D
+
+        // IMPORTANTE: não congele a rotação se você quer usar MoveRotation
+        // (Se você marcar Freeze Rotation Z no inspector, o MoveRotation NÃO irá girar.
+        // Deixe destravado e confie no script para girar.)
+        // Inicializa os componentes primeiro
+
+        // Configurações padrão para top-down 2D
+        rb.gravityScale = 0f;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        // Ativa controles Android se necessário
+        if (Application.platform == RuntimePlatform.Android && android != null)
             android.SetActive(true);
-        }
-        rb = GetComponent<Rigidbody2D>();
-        pla = GetComponent<Animator>();
+
         vida = 3;
-        currentVelocity = Vector2.zero;  // Inicializa velocidade em zero
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        time = time + Time.deltaTime;
-        UpdateAnimation();
-    }
-    
-    private void FixedUpdate()
-    {
-        if(time>3.3f)
+        time += Time.deltaTime;
+
+       // 2) Normaliza para não correr mais rápido na diagonal
+        if (input.sqrMagnitude > 1f) input.Normalize();
+
+        // 3) Dead zone
+        if (input.magnitude < deadZone) input = Vector2.zero;
+
+        // 4) Atualiza direção atual e última direção válida
+        if (input != Vector2.zero)
         {
-            Walk();
+            moveDir = input.normalized;
+            lastMoveDir = moveDir;
+        }
+  // 5) Parâmetros do Animator (se existir)
+        if (animator)
+        {
+            // Quando parado, mantenha a última direção (Idle direcionado)
+            Vector2 forAnim = (input == Vector2.zero) ? lastMoveDir : moveDir;
+            animator.SetFloat("MoveX", forAnim.x);
+            animator.SetFloat("MoveY", forAnim.y);
+            animator.SetFloat("Speed", input.magnitude);
         }
     }
 
-    private void Walk()
+    void FixedUpdate()
     {
-        if (moveInput.magnitude > 0.1f)
+      // 6) Movimento pela física
+        rb.velocity = input * moveSpeed;
+
+        // 7) Rotação suave para onde estamos indo (se parado, mantém rotação atual)
+        if (moveDir != Vector2.zero)
         {
-            lastMoveDirection = moveInput.normalized;
+            float targetAngle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+            targetAngle -= spriteForwardOffset; // ajusta eixo "frente" do sprite
+            float newAngle = Mathf.MoveTowardsAngle(rb.rotation, targetAngle, rotationSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(newAngle);
         }
-
-        // Calcula velocidade alvo (normalizada para diagonais uniformes)
-        Vector2 targetVelocity = moveInput.normalized * speed;
-
-        // Suaviza a velocidade com aceleração para movimento fluido e realista
-        currentVelocity = Vector2.SmoothDamp(currentVelocity, targetVelocity, ref currentVelocity, accelerationTime);
-
-        // Aplica o movimento físico suavizado
-        rb.MovePosition(rb.position + currentVelocity * Time.fixedDeltaTime);
     }
-    
+
+    // Novo Input System
     public void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
+        input = value.Get<Vector2>();
     }
-    
-    private void UpdateAnimation()
-    {
-        pla.SetBool(IsWalking, moveInput != Vector2.zero);
 
-        if (moveInput != Vector2.zero)
-        {
-            pla.SetFloat(MoveDirectionX, moveInput.x);
-            pla.SetFloat(MoveDirectionY, moveInput.y);
-            if (particleRotation != null)
-            {
-                particleRotation.UpdateRotation(moveInput.normalized);
-            }
-        }
-    }
-    
+    // ===== Vida =====
     public void GanhaVida(int valor)
     {
-        vida = vida + valor;
-        if (vida > 3)
-        {
-            vida = 3;
-        }
+        vida = Mathf.Min(vida + valor, 3);
     }
-    
+
     public void PerdeVida(int valor)
     {
-        Instantiate(somPerdeVida, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z), Quaternion.identity);
-        
-        vida = vida + valor;
+        if (somPerdeVida)
+            Instantiate(somPerdeVida, transform.position, Quaternion.identity);
+
+        vida += valor;
         if (vida <= 0)
-        {
-           SceneManager.LoadScene("GameOver");
-        }
+            SceneManager.LoadScene("GameOver");
+
         transform.position = Renasce;
-        Debug.Log("agora voce tem" + " " + vida + " " + "de vida");
+        Debug.Log($"Agora você tem {vida} de vida");
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Check"))
-        {
             Renasce = collision.transform.position;
-        }
     }
-    public void AtivaAndroid()
-    {
-        android.SetActive(true);
 
-    }
-    public void DesativaAndroid()
+    public void AtivaAndroid() => android?.SetActive(true);
+    public void DesativaAndroid() => android?.SetActive(false);
+
+    void OnValidate()
     {
-        android.SetActive(false);
+        moveSpeed = Mathf.Max(0f, moveSpeed);
+        rotationSpeed = Mathf.Max(0f, rotationSpeed);
+        deadZone = Mathf.Clamp(deadZone, 0f, 0.5f);
     }
 }
-    

@@ -2321,6 +2321,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 195042367}
     - target: {fileID: 4753862474271331460, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1546214102}
+    - target: {fileID: 4753862474271331460, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: somPerdeVida
       value: 
       objectReference: {fileID: 3883464335524014708, guid: 118704ff6ccd03b46a4e0b7922e224cf, type: 3}
@@ -2328,6 +2332,10 @@ PrefabInstance:
       propertyPath: particleRotation
       value: 
       objectReference: {fileID: 1642413213}
+    - target: {fileID: 4753862474271331460, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
+      propertyPath: spriteForwardOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331461, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2372,6 +2380,14 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4753862474271331512, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753862474271331512, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331514, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_Size.x
       value: 5
@@ -2394,23 +2410,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7188
+      value: 0.6519966
       objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7188
+      value: 0.6519966
       objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.797
+      value: 1.6299915
       objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3000002
+      value: 1.1331
       objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.6
+      value: 9.1599
       objectReference: {fileID: 0}
     - target: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23234,6 +23250,11 @@ MonoBehaviour:
 --- !u!4 &1546214100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4753862474271331515, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
+  m_PrefabInstance: {fileID: 309357154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1546214102 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4753862474271331461, guid: 26cdce1541475df4bbac2110856d65df, type: 3}
   m_PrefabInstance: {fileID: 309357154}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576932406

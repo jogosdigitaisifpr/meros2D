@@ -105,19 +105,23 @@ public class Pescador : MonoBehaviour
     fundoCut.SetActive(true);
         pla.enabled = false;
         Animator cutsceneAnimator = cutsceneObject.GetComponent<Animator>();
-    if (cutsceneAnimator != null)
-    {
-        cutsceneAnimator.Play("CutsceneCompleta");
-        Debug.Log("Animação da cutscene ativada.");
-    }
-    else
-    {
-        Debug.LogError("Animator não encontrado no cutsceneObject.");
-    }
-    // Aguarda a duração da animação
-    yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
-        pla.AtivaAndroid();
+        if (cutsceneAnimator != null)
+        {
+            cutsceneAnimator.Play("CutsceneCompleta");
+            Debug.Log("Animação da cutscene ativada.");
+        }
+        else
+        {
+            Debug.LogError("Animator não encontrado no cutsceneObject.");
+        }
+        // Aguarda a duração da animação
+                player.SetActive(false);
 
+        yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
+            player.SetActive(true);
+
+if (Application.platform == RuntimePlatform.Android)
+    pla.AtivaAndroid();
         pla.enabled = true;
     fundoCut.SetActive(false); // Oculta novamente
     cameraAudio.UnPause();

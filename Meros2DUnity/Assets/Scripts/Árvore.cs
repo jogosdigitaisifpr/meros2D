@@ -25,7 +25,7 @@ public class Árvore : MonoBehaviour
         if(col.CompareTag("Player"))
         {
           
-            pla.speed = 4;
+            pla.moveSpeed = 4;
         }
         if(col.CompareTag("aguaEsgoto"))
         {
@@ -37,7 +37,7 @@ public class Árvore : MonoBehaviour
         if(col.CompareTag("Player"))
         {
             
-            pla.speed = 10;
+            pla.moveSpeed = 10;
         }
     }
     

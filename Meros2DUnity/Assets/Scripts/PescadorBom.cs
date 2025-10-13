@@ -8,7 +8,7 @@ public class PescadorBom : MonoBehaviour
 {
     public GameObject player, ponto;
     public float speed;
-    private bool seguiu;
+    public bool seguiu;
     GameObject obj;
     Player pla;
     PlayerCollision scriptColisor;
@@ -100,12 +100,15 @@ public class PescadorBom : MonoBehaviour
     }
 
   IEnumerator TocarCutsceneAnimada()
-{
+    {
     // Não pausar o tempo
+                player.transform.position = pla.Renasce;
+
         pla.DesativaAndroid();
     cameraAudio.Pause();
     fundoCut.SetActive(true);
         pla.enabled = false;
+        player.SetActive(false);
     Animator cutsceneAnimator = cutsceneObject.GetComponent<Animator>();
     if (cutsceneAnimator != null)
     {
@@ -116,8 +119,10 @@ public class PescadorBom : MonoBehaviour
     {
         Debug.LogError("Animator não encontrado no cutsceneObject.");
     }
-    // Aguarda a duração da animação
-    yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
+        // Aguarda a duração da animação
+        yield return new WaitForSeconds(20f); // ajuste conforme o tempo da animação
+        player.SetActive(true);
+        if (Application.platform == RuntimePlatform.Android)
     pla.AtivaAndroid();
         pla.enabled = true  ;
     fundoCut.SetActive(false); // Oculta novamente
